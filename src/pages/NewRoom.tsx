@@ -24,11 +24,11 @@ export function NewRoom () {
       return;
     }
 
-    const roomRef = ref(database,'rooms');
+    const roomRef = await ref(database,'rooms');
 
       const firebaseRoom = push(roomRef); // Sempre que vai salvar info dentro de uma lista no firebase
     
-    set(firebaseRoom, {
+    await set(firebaseRoom, {
       title: newRoom,
       authorID: user?.id
 

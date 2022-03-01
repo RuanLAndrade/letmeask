@@ -33,8 +33,8 @@ export function Home () {
     if(roomCode.trim() === '') {
       return;
     }
-    const roomRef = ref(database);
-    get(child(roomRef,`rooms/${roomCode}`)).then((room) => {
+    const roomRef =  await ref(database);
+    await get(child(roomRef,`rooms/${roomCode}`)).then((room) => {
       console.log(room);
       if(!room.exists()) {
         alert('Room does not exists.');
