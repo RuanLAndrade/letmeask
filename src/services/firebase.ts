@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getDatabase, ref, set, push,  get, child, onValue, off, remove } from "firebase/database";
+import { getDatabase, ref, set, push,  get, child, onValue, off, remove, update } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,4 +31,4 @@ const popUp = signInWithPopup;
 
 
 export { auth, provider, database, popUp, ref, set, push, get, child, onValue,
-off, remove}; 
+off, remove, update}; 
