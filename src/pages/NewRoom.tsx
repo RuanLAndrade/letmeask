@@ -1,15 +1,15 @@
-import { useAuth } from '../hooks/useAuth';
-import { Link, useHistory } from 'react-router-dom'
 import {FormEvent, useState} from 'react';
+import { Link, useHistory } from 'react-router-dom'
+
+import { database, ref, set, push } from '../services/firebase';
+
+import { useAuth } from '../hooks/useAuth';
+import { Button } from '../components/Button';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 
-import { Button } from '../components/Button';
-
 import '../styles/auth.scss';
-import { database, ref, set, push } from '../services/firebase';
-
 
 export function NewRoom () {
   const { user }  = useAuth();
@@ -68,4 +68,3 @@ export function NewRoom () {
 
   );
 }
-

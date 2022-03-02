@@ -54,10 +54,11 @@ export function useRoom (roomId: string) {
 
         }
       })
+      console.log(parsedQuestions);
 
       setTitle(roomData.title);
       setQuestions(parsedQuestions);
-    }, {onlyOnce: true})
+    })
 
     return () => {
       off(roomRef, 'value' );

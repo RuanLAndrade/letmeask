@@ -1,15 +1,16 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { database, push, ref, remove, set } from '../services/firebase';
+
 import  logoImg  from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
-
 import { RoomCode } from '../components/RoomCode';
+
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
-import { database, push, ref, remove, set } from '../services/firebase';
 
 import '../styles/room.scss';
 
@@ -37,10 +38,10 @@ export function Room() {
       throw new Error('You must be logged in');
     }
 
-    const roomQuestionRef = await ref(database,`rooms/${roomId}/questions`);
+    const roomQuestionRef = ref(database,`rooms/${roomId}/questions`);
     
-    const question = push(roomQuestionRef);
-
+    const question = await push(roomQuestionRef);
+    
     await set(question, {
       content: newQuestion,
       author: {
@@ -56,11 +57,11 @@ export function Room() {
 
 async function handleLikeQuestion (questionId: string, likeId: string | undefined) {
     if(likeId) {
-      const newLike = await ref(database, `rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
+      const newLike = ref(database, `rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
       remove(newLike);
       
     } else {
-        const newLike = await ref(database, `rooms/${roomId}/questions/${questionId}/likes`)
+        const newLike = ref(database, `rooms/${roomId}/questions/${questionId}/likes`)
          push(newLike, {
           authorId: user?.id
           })
